@@ -8,7 +8,7 @@
 
   outputs = { flake-parts, ... }@inputs: 
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
+      systems = [ "aarch64-linux" "aarch64-darwin" "x86_64-linux" "i686-linux" "x86_64-darwin" ];
       perSystem = { pkgs, ... }:
         {
           packages.ipfs-remote = pkgs.writeShellScriptBin "ipfs-remote" ''
