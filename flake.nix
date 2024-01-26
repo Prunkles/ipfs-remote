@@ -10,11 +10,12 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-linux" "aarch64-darwin" "x86_64-linux" "i686-linux" "x86_64-darwin" ];
       perSystem = { pkgs, ... }:
-        {
+        rec {
           packages.ipfs-remote = pkgs.writeShellScriptBin "ipfs-remote" ''
             export IPFS_EXEC="${pkgs.kubo}/bin/ipfs"
             exec "${./ipfs-remote.sh}" "$@"
           '';
+          packages.default = packages.ipfs-remote;
         };
     };
 }
